@@ -7,18 +7,44 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/headerAndBody.css">
     <title>Clinica</title>
 </head>
 
 <body>
     <header>
-        <a href="index.html">homepage</a>
-        <a href="galeria/galeria.html">Galeria</a>
-        <a href="cadastrar_endereco/cadastrar_endereco.html">Cadastrar endereço</a>
-        <a href="agendamento/agendamento.html">Agendamento</a>
-        <a href="login/login.html">Login</a>
+        <a href="index.html" class="logo_and_name">
+            <img src="images/logo.png" alt="logo clinica" class="logo_image">
+            <p class="clinic_name">Orale Clinica</p>
+        </a>
+        <div class="nav_buttons">
+            <a href="galeria/galeria.html">Galeria</a>
+            <a href="cadastrar_endereco/cadastrar_endereco.html">Novo endereço</a>
+            <a href="agendamento/agendamento.html">Agendamento</a>
+            <a href="login/login.html">Login</a>
+        </div>
     </header>
 
+    <main class="gridcontainer">
+        <div class="left-column">
+            <img src="images/dentist.jpeg" alt="dentist image" class="dentist_image">
+        </div>
+
+        <div class="right_column">
+            <article>
+                <h2>QUEM SOMOS?</h2>
+                <p>Clinica odontológica de Uberlândia - MG especializada em implantes dentais com mais de 20 profissionais competentes.</p>
+            </article>
+            <article>
+                <h2>NOSSOS VALORES</h2>
+                <p>Aqui na Orale Odontologia nossos valores estão baseados na excelencia e profissionalismo. <br> Nos trazemos a mesa o melhor trabalho possivel da maneirta mais eficiente possivel</p>
+            </article>
+
+        </div>
+
+    </main>
 </body>
+
+
 
 </html>
