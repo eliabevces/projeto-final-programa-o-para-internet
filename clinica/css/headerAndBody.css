@@ -60,30 +60,3 @@ header {
 
 
 /* end header */
-
-
-/* main */
-
-.gridcontainer {
-    display: grid;
-    grid-column-gap: 50px;
-    grid-template-columns: 1fr 1fr;
-}
-
-.dentist_image {
-    padding-left: 20%;
-    padding-top: 20px;
-    object-fit: contain;
-    width: 27vw;
-}
-
-.right_column {
-    display: grid;
-    grid-template-rows: 1fr 1fr;
-    text-align: left;
-    align-items: center;
-    font-size: 1.3rem;
-}
-
-
-/* end main */

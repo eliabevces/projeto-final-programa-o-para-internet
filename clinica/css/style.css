@@ -1,68 +1,8 @@
-:root {
-    --font_color: #283845;
-    --font_family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
-
-body {
-    border: 0;
-    margin: 0;
-    background-image: url("https://images.unsplash.com/photo-1599163666602-ef737d996c16?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=633&q=80");
-    background-size: cover;
-    width: 100vw;
-    height: 100vh;
-    color: var(--font_color);
-}
-
-
-/* header */
-
-header {
-    width: 100%;
-    display: grid;
-    grid-column-gap: 50px;
-    grid-template-columns: 1fr 1fr;
-    text-decoration: none;
-    background: rgba(226, 234, 252, 0.36);
-}
-
-.logo_image {
-    height: 80px;
-    width: 80px;
-}
-
-.logo_and_name {
-    display: flex;
-    font-family: var(--font_family);
-    font-size: 3rem;
-    text-decoration: inherit;
-    color: inherit;
-}
-
-.clinic_name {
-    margin: 0;
-    padding: 5px 0 0 10px;
-}
-
-.nav_buttons {
-    display: grid;
-    grid-template-columns: 1fr 2fr 1fr 1fr;
-    padding-top: 20px;
-}
-
-.nav_buttons a {
-    text-decoration: none;
-    color: inherit;
-    text-align: right;
-    font-size: 1.5rem;
-    /* padding: 10px 25px; */
-    text-align: center;
-}
-
-
-/* end header */
-
-
 /* main */
+
+main {
+    height: 90vh;
+}
 
 .gridcontainer {
     display: grid;
@@ -74,7 +14,7 @@ header {
     padding-left: 20%;
     padding-top: 20px;
     object-fit: contain;
-    width: 27vw;
+    width: 38vw;
 }
 
 .right_column {

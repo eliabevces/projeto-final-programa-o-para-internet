@@ -1,47 +1,80 @@
-const buscaesp = document.querySelector("#especialidade");
-buscaesp.addEventListener('change', buscaMedicos);
+window.onload = function() {
+    buscaEspecialidades();
+    const buscamed = document.querySelector("#especialidade");
+    buscamed.addEventListener('change', buscaMedicos);
+
+}
+
+
+function buscaEspecialidades() {
+
+    fetch("php/busca_especialidades.php")
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(response.status);
+            }
+
+            return response.json();
+        })
+        .then(medico_esp => {
+
+            var campoSelect = document.getElementById("especialidade");
+
+
+            for (i = 0; i < medico_esp.length; i++) {
+
+                esp = medico_esp[i];
+
+                option = document.createElement("option");
+                option.text = esp.especialidade;
+                option.value = esp.especialidade;
+                campoSelect.add(option);
+            }
+        })
+        .catch(error => {
+
+            form.reset();
+            console.error('Falha inesperada: ' + error);
+        });
+}
+
+
 
 function buscaMedicos(e) {
     e.preventDefault();
     const especialidade = document.querySelector("#especialidade");
+    console.log(especialidade.value);
+    fetch("php/busca_medicos.php?especialidade=" + especialidade.value)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(response.status);
+            }
 
-    let xhr = new XMLHttpRequest();
-    xhr.open("GET", "busca_medicos.php?especialidade=" + especialidade.value, true);
-    xhr.send();
+            return response.json();
+        })
+        .then(medicos => {
+            console.log(medicos);
+            console.log(medicos.length);
 
-    xhr.onload = function() {
-        if (xhr.status != 200) {
-            console.error("Falha inesperada: " + xhr.responseText);
-        }
+            var campoSelect = document.getElementById("nomeMedico");
 
+            for (i = campoSelect.length - 1; i >= 0; i--) {
+                campoSelect.remove(i);
+            }
 
+            for (i = 0; i < medicos.length; i++) {
 
+                medico = medicos[i];
 
-        var medicos = JSON.parse(xhr.responseText);
+                option = document.createElement("option");
+                option.text = medico.nome;
+                option.value = medico.nome;
+                campoSelect.add(option);
+            }
+        })
+        .catch(error => {
 
-        var campoSelect = document.getElementById("nomeMedico");
-
-        for (i = campoSelect.length - 1; i >= 0; i--) {
-            campoSelect.remove(i);
-        }
-
-        for (i = 0; i < medicos.length; i++) {
-
-            medico = medicos[i];
-
-            option = document.createElement("option");
-            option.text = medico.nome;
-            option.value = medico.nome;
-            campoSelect.add(option);
-        }
-
-    }
-    xhr.onerror = function() {
-        console.error("Erro de rede - requisição não finalizada");
-    };
-
-
-
-
+            console.error('Falha inesperada: ' + error);
+        });
 
 }
