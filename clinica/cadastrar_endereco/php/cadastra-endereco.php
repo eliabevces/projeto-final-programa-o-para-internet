@@ -27,7 +27,7 @@
       $cep, $logradouro, $cidade, $estado
     ]);
   
-    header("location: cadastrar_endereco.html");
+    header("location: ../cadastrar_endereco.html");
     exit();
   } 
   catch (Exception $e) {  
