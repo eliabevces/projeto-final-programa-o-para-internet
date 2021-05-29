@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $senha = htmlspecialchars($_POST["senha"]);
 
   if (checkLogin($pdo, $email, $senha)) {
-    $requestResponse = new RequestResponse(true, "sessao_restrita.html");
+    $requestResponse = new RequestResponse(true, "sessao_restrita.php");
   } else {
     $errorMsg = "Dados incorretos";
     $requestResponse = new RequestResponse(false, "");

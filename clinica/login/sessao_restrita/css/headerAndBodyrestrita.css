@@ -1,0 +1,68 @@
+:root {
+    --font_color: #283845;
+    --font_family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+body {
+    border: 0;
+    margin: 0;
+    background-image: url("https://images.unsplash.com/photo-1544171779-783118e110f8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=334&q=80");
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    color: var(--font_color);
+}
+
+
+/* header */
+
+header {
+    width: 100%;
+    text-decoration: none;
+    text-align: center;
+    background: rgb(63, 64, 66, 0.36);
+}
+
+.logo_image {
+    height: 40px;
+    width: 40px;
+}
+
+.logo_and_name {
+    display: flexbox;
+    font-family: var(--font_family);
+    font-size: 2rem;
+    text-decoration: none;
+    color: inherit;
+}
+
+.clinic_name {
+    margin: 0;
+    padding: 5px 0 0 10px;
+}
+
+.nav_buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1.5fr 1.5fr;
+    padding-top: 20px;
+}
+
+.nav_buttons a {
+    text-decoration: inherit;
+    color: inherit;
+    text-align: right;
+    font-size: 1.2rem;
+    /* padding: 10px 25px; */
+    text-align: center;
+}
+
+.nav_buttons a:hover {
+    color: blanchedalmond;
+}
+
+th {
+    color: var(--font_color);
+}
+
+
+/* end header */

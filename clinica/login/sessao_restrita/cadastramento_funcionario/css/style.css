@@ -1,0 +1,12 @@
+main {
+    width: 70vw;
+    text-align: center;
+    padding: 30px;
+    border: 0.5px solid lightgray;
+    border-radius: 5px;
+    background-color: rgba(238, 222, 222, 0.432);
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
