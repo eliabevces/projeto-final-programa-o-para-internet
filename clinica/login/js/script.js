@@ -29,10 +29,31 @@ function enviaForm(event) {
             return response.json();
         })
         .then(requestResponse => {
-            if (requestResponse.success)
-                window.location = requestResponse.destination;
-            else
-                document.querySelector("#loginFailMsg").style.display = 'block';
+            if (requestResponse.success){
+                window.open(requestResponse.destination, '_blank');
+            } else{
+                if(requestResponse.destination === 'LOGADO'){
+                    if(window.confirm("Já exite um usuário logado, deslogar?")){
+                        const options2 = {
+                            method: "GET"
+                        }
+                    
+                        fetch("sessao_restrita/logout/php/logout.php", options2)
+                            .then(response => {
+                                if (!response.ok) {
+                                    throw new Error(response.status);
+                                }
+
+                                window.alert("Deslogado com sucesso!");
+                            })
+                            .catch(error => {
+                                console.error('Falha inesperada: ' + error);
+                            });
+                    }
+                } else {
+                    document.querySelector("#loginFailMsg").style.display = 'block';
+                }
+            }
         })
         .catch(error => {
 
