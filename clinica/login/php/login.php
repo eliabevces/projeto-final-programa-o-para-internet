@@ -38,6 +38,30 @@ function checkLogin($pdo, $email, $senha)
   }
 }
 
+function checkMedico($pdo, $email)
+{
+  $sql = <<<SQL
+    SELECT especialidade
+    FROM Medico as m, Pessoa as p
+    WHERE p.codigo = m.codigo AND p.email = ?
+    SQL;
+
+  try {
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$email]);
+    $row = $stmt->fetch();
+    if ($row){
+      return true;
+    }
+
+    return false; 
+  } 
+  catch (Exception $e) {
+    exit('Falha inesperada: ' . $e->getMessage());
+  }
+}
+
 if($_SESSION["emailUsuario"] && $_SESSION["loginString"]){
   $requestResponse = new RequestResponse(false, "LOGADO");
 } else {
@@ -55,8 +79,13 @@ if($_SESSION["emailUsuario"] && $_SESSION["loginString"]){
 
     $senhaHash = checkLogin($pdo, $email, $senha);
     if ($senhaHash) {
+      if(checkMedico($pdo, $email)){
+        $_SESSION["usuarioMedico"] = true;
+      }
+
       $_SESSION["emailUsuario"] = $email;
       $_SESSION["loginString"] = hash('sha512', $senhaHash, $_SERVER['HTTP_USER_AGENT']);
+      
 
       $requestResponse = new RequestResponse(true, "sessao_restrita/sessao_restrita.php");
     } else {

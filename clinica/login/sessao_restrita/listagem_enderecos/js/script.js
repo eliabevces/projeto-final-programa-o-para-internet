@@ -1,8 +1,8 @@
 
-window.addEventListener("load",function(event) {
+window.onload = function() {
     const el = document.querySelector("#logout");
     el.addEventListener('click', logout);
-},false);
+}
 
 function logout(event) {
     event.preventDefault();
@@ -11,7 +11,7 @@ function logout(event) {
         method: "GET"
     }
 
-    fetch("logout/php/logout.php", options)
+    fetch("../logout/php/logout.php", options)
         .then(response => {
             if (!response.ok) {
                 throw new Error(response.status);

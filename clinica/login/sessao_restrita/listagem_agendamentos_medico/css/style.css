@@ -1,0 +1,14 @@
+table {
+    border-radius: 10px;
+    background-color: rgba(238, 222, 222, 0.432);
+    overflow: hidden;
+}
+
+img {
+    width: 15px;
+    height: 15px;
+}
+
+main {
+    padding-top: 2rem;
+}

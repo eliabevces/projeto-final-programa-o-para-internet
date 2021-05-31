@@ -7,6 +7,8 @@ window.onload = function() {
 function enviaForm(event) {
     event.preventDefault();
 
+    document.querySelector("#loginFailMsg").style.display = 'none';
+
     let form = document.querySelector("form");
     let formData = new FormData();
     formData.append("email", form.email.value);

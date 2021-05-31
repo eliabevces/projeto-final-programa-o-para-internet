@@ -26,8 +26,12 @@
     $stmt->execute([
       $cep, $logradouro, $cidade, $estado
     ]);
-  
-    header("location: ../cadastrar_endereco.html");
+
+    echo "<script>
+    alert('Endereço cadastrado com sucesso!');
+    window.location.href='../cadastrar_endereco.html';
+    </script>";
+
     exit();
   } 
   catch (Exception $e) {  

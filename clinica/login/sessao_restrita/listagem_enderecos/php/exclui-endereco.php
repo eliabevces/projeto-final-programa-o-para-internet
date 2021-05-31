@@ -1,5 +1,5 @@
 <?php
-require "../../database/conexaoMysql.php";
+require "../../../../database/conexaoMysql.php";
 $pdo = mysqlConnect();
 
 $cep = "";
@@ -20,7 +20,7 @@ try {
   $stmt = $pdo->prepare($sql);
   $stmt->execute([$cep]);
 
-  header("location: mostra-enderecos.php");
+  header("location: ../listagem_enderecos.php");
   exit();
 } 
 catch (Exception $e) {  
