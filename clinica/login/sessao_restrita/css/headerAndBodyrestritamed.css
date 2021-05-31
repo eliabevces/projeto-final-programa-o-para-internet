@@ -43,7 +43,7 @@ header {
 
 .nav_buttons {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1.5fr 0.5fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1.5fr 1.5fr 0.5fr;
     /* padding-top: 20px; */
 }
 

@@ -20,6 +20,7 @@
   if (isset($_POST["salario"])) $salario = $_POST["salario"];
   if (isset($_POST["senha"])) $senha = $_POST["senha"];
 
+
   $hashsenha = password_hash($senha, PASSWORD_DEFAULT);
 
   $sql1 = <<<SQL
@@ -29,7 +30,20 @@
 
   $sql2 = <<<SQL
   INSERT INTO Funcionario (codigo, data_contrato, salario, senha_hash)
-  VALUES (?, ?, ?, ?)
+  VALUES ((
+    select codigo
+    from Pessoa
+    where codigo = ?
+  ), ?, ?, ?)
+  SQL;
+
+  $sql3 = <<<SQL
+  INSERT INTO Medico (codigo, especialidade, crm)
+  VALUES ((
+    select codigo
+    from Funcionario
+    where codigo = ?
+  ), ?, ?)
   SQL;
 
   try {
@@ -40,14 +54,24 @@
       $nomeFuncionario, $sexoFuncionario, $email, $telefone,
       $cep, $logradouro, $cidade, $estado
     ])) throw new Exception('Falha na primeira inserção');
-  
     $idNovaPessoa = $pdo->lastInsertId();
+
+
     $stmt2 = $pdo->prepare($sql2);
     if (!$stmt2->execute([
       $idNovaPessoa, $DataInicioContrato, $salario, $hashsenha
     ])) throw new Exception('Falha na segunda inserção');
   
-    // Efetiva as operações
+
+
+    if(isset($_POST['medicocheck'])){
+      if (isset($_POST["especialidade"])) $especialidade = $_POST["especialidade"];
+      if (isset($_POST["crm"])) $crm = $_POST["crm"];
+      $stmt3 = $pdo->prepare($sql3);
+      if (!$stmt3->execute([
+        $idNovaPessoa, $especialidade, $crm
+      ])) throw new Exception('Falha na terceira inserção');    
+    }
     $pdo->commit();
 
     echo "<script>

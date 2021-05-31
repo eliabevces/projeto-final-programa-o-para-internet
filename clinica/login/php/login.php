@@ -62,6 +62,29 @@ function checkMedico($pdo, $email)
   }
 }
 
+function medicoId($pdo, $email)
+{
+  $sql = <<<SQL
+    SELECT m.codigo
+    FROM Medico as m, Pessoa as p
+    WHERE p.codigo = m.codigo AND p.email = ?
+    SQL;
+
+  try {
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$email]);
+    $row = $stmt->fetch();
+
+    return $row['m.codigo']; 
+ 
+   
+  } 
+  catch (Exception $e) {
+    exit('Falha inesperada: ' . $e->getMessage());
+  }
+}
+
 if($_SESSION["emailUsuario"] && $_SESSION["loginString"]){
   $requestResponse = new RequestResponse(false, "LOGADO");
 } else {
@@ -81,6 +104,7 @@ if($_SESSION["emailUsuario"] && $_SESSION["loginString"]){
     if ($senhaHash) {
       if(checkMedico($pdo, $email)){
         $_SESSION["usuarioMedico"] = true;
+        $_SESSION["idMedico"] = [medicoId($pdo, $email)];
       }
 
       $_SESSION["emailUsuario"] = $email;

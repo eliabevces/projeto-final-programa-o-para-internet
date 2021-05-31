@@ -6,7 +6,11 @@ main {
     border-radius: 5px;
     background-color: rgba(238, 222, 222, 0.432);
     position: absolute;
-    top: 60%;
+    top: 65%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.divmedcheck {
+    display: none;
 }

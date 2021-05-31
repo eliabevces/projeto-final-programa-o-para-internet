@@ -54,8 +54,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $data_consulta = $_POST["dataConsulta"];
   
 
-  // $stmt->execute([$nome_medico, $data_consulta]);
-
 
 
   echo json_encode(checkhorarios($pdo, $nome_medico, $data_consulta));

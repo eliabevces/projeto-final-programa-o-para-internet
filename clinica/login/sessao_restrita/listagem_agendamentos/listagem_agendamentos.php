@@ -27,9 +27,6 @@ try {
   FROM Agenda
   SQL;
 
-  // Neste exemplo não é necessário utilizar prepared statements
-  // porque não há possibilidade de injeção de SQL, 
-  // pois nenhum parâmetro é utilizado na query SQL
   $stmt = $pdo->query($sql);
 } 
 catch (Exception $e) {
@@ -48,7 +45,20 @@ catch (Exception $e) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-CuOF+2SnTUfTwSZjCXf01h7uYhfOBuxIhGKPbfEJ3+FqH/s6cIFN9bGr1HmAg4fQ" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="../css/headerAndBodyrestrita.css">
+    <?php
+        session_start();
+        if($_SESSION["usuarioMedico"]){
+            echo <<<HTML
+            <link rel="stylesheet" href="../css/headerAndBodyrestritamed.css">
+            HTML;
+        }else{
+            echo <<<HTML
+            <link rel="stylesheet" href="../css/headerAndBodyrestrita.css">
+            HTML;
+        }
+
+    ?>
+
     <link rel="icon" href="../../../images/logo.png">
     <script src="js/script.js"></script>
     <title>Listagem de agendamentos</title>
@@ -71,7 +81,14 @@ catch (Exception $e) {
             <a href="../listagem_pacientes/listagem_pacientes.php">Listar Pacientes</a>
             <a href="../listagem_enderecos/listagem_enderecos.php">Listar Endereços</a>
             <a href="listagem_agendamentos.php">Listar todos Agendamentos</a>
-            <a href="../listagem_agendamentos_medico/listagem_agendamentos_medico.php">Listar meus Agendamentos</a>
+            <?php
+                if($_SESSION["usuarioMedico"]){
+                    session_start();
+                    echo <<<HTML
+                    <a href="../listagem_agendamentos_medico/listagem_agendamentos_medico.php">Listar meus Agendamentos</a>
+                    HTML;
+                }
+            ?>
             <a href="#" id="logout" >Sair</a>
         </div>
 
@@ -96,8 +113,6 @@ catch (Exception $e) {
                 <?php
                     while ($row = $stmt->fetch()) {
 
-                        // Limpa os dados produzidos pelo usuário
-                        // com possibilidade de ataque XSS
                         $codigoAgenda = $row['codigo'];
                         $codigoMedico = $row['codigo_medico'];
                         $data = $row['data'];
